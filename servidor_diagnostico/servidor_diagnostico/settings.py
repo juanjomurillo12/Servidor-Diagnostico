@@ -76,7 +76,7 @@ WSGI_APPLICATION = "servidor_diagnostico.wsgi.application"
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db-hospital',
+        'NAME': 'db-diagnostico',
         'USER': 'db-user',
         'PASSWORD': 'ISIS2503',
         'HOST': '10.65.176.5',
