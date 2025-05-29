@@ -1,18 +1,17 @@
 # diagnostico/views.py
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions    import AllowAny
+from rest_framework.authentication import SessionAuthentication
+from .models       import Diagnostico
+from .serializers  import DiagnosticoSerializer
 
-from .models import Diagnostico
-from .serializers import DiagnosticoSerializer
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+    def enforce_csrf(self, request):
+        # skip CSRF check
+        return
 
-@method_decorator(csrf_exempt, name="dispatch")
 class DiagnosticoViewSet(viewsets.ModelViewSet):
-    """
-    Ahora cualquiera puede hacer POST/GET/etc a /diagnosticos/
-    """
-    queryset = Diagnostico.objects.all()
-    serializer_class = DiagnosticoSerializer
-    permission_classes = [AllowAny]
+    queryset             = Diagnostico.objects.all()
+    serializer_class     = DiagnosticoSerializer
+    permission_classes   = [AllowAny]
+    authentication_classes = [CsrfExemptSessionAuthentication]
