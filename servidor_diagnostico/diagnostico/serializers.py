@@ -5,4 +5,5 @@ from .models import Diagnostico
 class DiagnosticoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Diagnostico
-        fields = ['id', 'paciente', 'comentarios', 'cirugia', 'creado_en']
+        fields = ['id', 'paciente_id', 'comentarios', 'cirugia', 'creado_en']
+        read_only_fields = ['id', 'creado_en']
