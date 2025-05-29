@@ -25,6 +25,6 @@ router.register(r'diagnosticos', DiagnosticoViewSet, basename='diagnostico')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
 
